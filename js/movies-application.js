@@ -8,5 +8,7 @@ function getMovies() {
 }
 
 getMovies().then( (movieList) => {
-    console.log(movieList)
+const movieOutput = document.getElementById('movieOutput');
+movieOutput.innerHTML = movieList[0].title;
+    console.log(movieList[0].title, movieList)
 })
