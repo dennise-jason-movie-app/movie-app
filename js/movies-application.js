@@ -16,16 +16,20 @@ function simpleCard(movie){
             <div class="movie-card card">
                 <div class="card-body m-3">
                     <div class="card-img-top">
-                        <img src="${movie.poster}" alt="Movie Poster">
+                    <picture>
+                        <img src="${movie.poster}" alt="Movie Poster" class="img-thumbnail">
+                    </picture>
                     </div>
-                    Title: ${movie.title} <br>
-                    Rating: ${movie.rating} <br>
-                    Description: ${movie.plot} <br>
-                    Genre: ${movie.genre}<br>
-                    Year: ${movie.year}<br>
-                    Director: ${movie.director}<br>
-                    Actors/Actresses: ${movie.actors}<br>
-                    ID: ${movie.id}<br>
+                    <ul class="list-group">
+                        <li>Title: ${movie.title}</li> 
+                        <li>Rating: ${movie.rating}</li> 
+                        <li>Description: ${movie.plot}</li> 
+                        <li>Genre: ${movie.genre}</li>
+                        <li>Year: ${movie.year}</li>
+                        <li>Director: ${movie.director}</li>
+                        <li>Actors/Actresses: ${movie.actors}</li>
+                        <li>ID: ${movie.id}</li>
+                    </ul>
                 </div>
                 <div class="card-footer">
                     <button>Delete</button>
@@ -44,7 +48,7 @@ function addJSButtons(){
         return `
         <script>
             $('.edit-btn').click( () => {
-                $('#edit-modal').css('display', 'block');
+                $('#edit-modal').css('display', 'inline');
             })
             
             $('.close-btn').click( () => {
@@ -59,9 +63,22 @@ function addJSButtons(){
 
 
 // FORM
-
-
-
+const movie = {
+    title:  "Bambi",
+    rating: "3"
+}
+const options = {
+    method: "POST",
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(movie),
+};
+const fetchMovies = () => {
+        fetch(glitchMovies, options)
+        .then((response) => console.log(response))
+        .catch((reject) => console.log(reject));
+};
 /**
  * ACTIVATE
  */
