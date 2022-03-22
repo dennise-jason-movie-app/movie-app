@@ -16,6 +16,22 @@ function simpleCard(movie){
             <div class="movie-card card">
                 <div class="card-body m-3">
                     <div class="card-img-top">
+<<<<<<< HEAD
+                    <picture>
+                        <img src="${movie.poster}" alt="Movie Poster" class="img-thumbnail">
+                    </picture>
+                    </div>
+                    <ul class="list-group">
+                        <li>Title: ${movie.title}</li> 
+                        <li>Rating: ${movie.rating}</li> 
+                        <li>Description: ${movie.plot}</li> 
+                        <li>Genre: ${movie.genre}</li>
+                        <li>Year: ${movie.year}</li>
+                        <li>Director: ${movie.director}</li>
+                        <li>Actors/Actresses: ${movie.actors}</li>
+                        <li>ID: ${movie.id}</li>
+                    </ul>
+=======
                         <img src="${movie.poster}" alt="Movie Poster">
                     </div>
                     Title: ${movie.title} <br>
@@ -26,6 +42,7 @@ function simpleCard(movie){
                     Director: ${movie.director}<br>
                     Actors/Actresses: ${movie.actors}<br>
                     ID: ${movie.id}<br>
+>>>>>>> main
                 </div>
                 <div class="card-footer">
                     <button>Delete</button>
@@ -44,7 +61,11 @@ function addJSButtons(){
         return `
         <script>
             $('.edit-btn').click( () => {
+<<<<<<< HEAD
+                $('#edit-modal').css('display', 'inline');
+=======
                 $('#edit-modal').css('display', 'block');
+>>>>>>> main
             })
             
             $('.close-btn').click( () => {
@@ -56,12 +77,32 @@ function addJSButtons(){
     `
 }
 
+// FORM
+const movie = {
+    title:  "Bambi",
+    rating: "3"
+}
+const options = {
+    method: "POST",
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(movie),
+};
+const fetchMovies = () => {
+        fetch(glitchMovies, options)
+        .then((response) => console.log(response))
+        .catch((reject) => console.log(reject));
+};
+=======
+
 
 
 // FORM
 
 
 
+>>>>>>> main
 /**
  * ACTIVATE
  */
@@ -72,5 +113,9 @@ getMovies().then( (movieList) => {
     }
     $('#movie-container').html(output);
 })
+<<<<<<< HEAD
+//...
+=======
 
 
+>>>>>>> main
