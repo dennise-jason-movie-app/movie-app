@@ -89,6 +89,4 @@ getMovies().then( (movieList) => {
     }
     $('#movie-container').html(output);
 })
-
-
-//123 check
+//...
