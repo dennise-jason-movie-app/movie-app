@@ -15,11 +15,11 @@
 <body>
 	<section id="movie-container" class="container mt-5">
 		<div class="movie-card card">
-			<div class="card-img-top">
+			<div class="card-img-top m-3">
 				Poster
 			</div>
 			<div class="card-body">
-				<div class="title">
+				<div class="title card-title">
 					Title
 				</div>
 				<ul class="list-group list-group-flush">
@@ -31,22 +31,39 @@
 					<li class="list-group-item">Year</li>
 				</ul>
 			</div>
-			<div class="card-footer">
-				<button>Delete</button>
+			<div class="card-footer text-end">
+				<button class="button">Delete</button>
 			</div>
 		</div>
 	</section>
 
-	<section id="form-container">
-		<h2>Add Movie</h2>
-		<form>
-			Title
-			Rating
-			Description
-			Genre
-			Year
-			<button>Submit</button>
-		</form>
+	<section id="form-container" class="container my-5">
+		<h2 class="text-center">Add Movie</h2>
+			<form class ="card list-group">
+				<div class="mb-3 mx-3 mt-2">
+				<label for="titleInput" class="form-label">Title</label>
+				<input type="text" class="form-control" id="titleInput">
+				</div>
+				<div class="mb-3 mx-3">
+				<label for="ratingInput" class="form-label">Rating</label>
+				<input type="text" class="form-control" id="ratingInput">
+				</div>
+				<div class="mb-3 mx-3">
+				<label for="descriptionInput" class="form-label">Description</label>
+				<input type="text" class="form-control" id="descriptionInput">
+				</div>
+				<div class="mb-3 mx-3">
+				<label for="genreInput" class="form-label">Genre</label>
+				<input type="text" class="form-control" id="genreInput">
+				</div>
+				<div class="mb-3 mx-3">
+				<label for="yearInput" class="form-label">Year</label>
+				<input type="text" class="form-control" id="yearInput">
+				</div>
+				<div class="card-footer">
+				<button id="add-movies" class="button">Submit</button>
+				</div>
+			</form>
 	</section>
 
 
