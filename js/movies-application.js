@@ -16,7 +16,6 @@ function simpleCard(movie){
             <div class="movie-card card">
                 <div class="card-body m-3">
                     <div class="card-img-top">
-<<<<<<< HEAD
                     <picture>
                         <img src="${movie.poster}" alt="Movie Poster" class="img-thumbnail">
                     </picture>
@@ -24,28 +23,11 @@ function simpleCard(movie){
                     <ul class="list-group">
                         <li>Title: ${movie.title}</li> 
                         <li>Rating: ${movie.rating}</li> 
-                        <li>Description: ${movie.plot}</li> 
-                        <li>Genre: ${movie.genre}</li>
-                        <li>Year: ${movie.year}</li>
-                        <li>Director: ${movie.director}</li>
-                        <li>Actors/Actresses: ${movie.actors}</li>
                         <li>ID: ${movie.id}</li>
                     </ul>
-=======
-                        <img src="${movie.poster}" alt="Movie Poster">
-                    </div>
-                    Title: ${movie.title} <br>
-                    Rating: ${movie.rating} <br>
-                    Description: ${movie.plot} <br>
-                    Genre: ${movie.genre}<br>
-                    Year: ${movie.year}<br>
-                    Director: ${movie.director}<br>
-                    Actors/Actresses: ${movie.actors}<br>
-                    ID: ${movie.id}<br>
->>>>>>> main
                 </div>
                 <div class="card-footer">
-                    <button>Delete</button>
+                    <button id="del-btn-${movie.id}">Delete</button>
                     <button class="edit-btn">Edit</button>
                 </div>
             </div>
@@ -60,49 +42,78 @@ function simpleCard(movie){
 function addJSButtons(){
         return `
         <script>
+            // EDIT BTN
             $('.edit-btn').click( () => {
-<<<<<<< HEAD
                 $('#edit-modal').css('display', 'inline');
-=======
-                $('#edit-modal').css('display', 'block');
->>>>>>> main
             })
             
+            // MODAL CLOSE BTN
             $('.close-btn').click( () => {
                 $('#edit-modal').css('display', 'none');
                 console.log('click')
             }) 
-            
+           
+
         </script>
     `
 }
 
-// FORM
-const movie = {
-    title:  "Bambi",
-    rating: "3"
+
+
+// ADD
+let titleInput = document.getElementById('title-input');
+let ratingInput = document.getElementById('rating-input');
+
+let movie = function (){
+    return {
+        title: titleInput.value,
+        rating: ratingInput.value
+    }
 }
+
 const options = {
     method: "POST",
     headers: {
         'Content-Type': 'application/json',
     },
-    body: JSON.stringify(movie),
+    body: JSON.stringify(movie)
 };
+
 const fetchMovies = () => {
+
         fetch(glitchMovies, options)
         .then((response) => console.log(response))
         .catch((reject) => console.log(reject));
 };
-=======
+
+// DELETE
+
+const delOption = {
+    method: "DELETE",
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(movie)
+}
+
+const deleteMovie = (num) => {
+    fetch((glitchMovies + '/' + num + ''), delOption)
+        .then((response) => console.log(response))
+        .catch((reject) => console.log(reject));
+};
 
 
 
-// FORM
+// EVENT LISTENERS
+// const delMoviesBTN = document.getElementById('sanity');
+// delMoviesBTN.addEventListener('click', deleteMovie);
+// DELETE BTN
 
 
+const addMoviesBTN = document.getElementById('add-movies-btn');
+addMoviesBTN.addEventListener('click', fetchMovies);
 
->>>>>>> main
+
 /**
  * ACTIVATE
  */
@@ -113,9 +124,4 @@ getMovies().then( (movieList) => {
     }
     $('#movie-container').html(output);
 })
-<<<<<<< HEAD
 //...
-=======
-
-
->>>>>>> main
