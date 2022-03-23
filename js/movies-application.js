@@ -23,16 +23,11 @@ function simpleCard(movie){
                     <ul class="list-group">
                         <li>Title: ${movie.title}</li> 
                         <li>Rating: ${movie.rating}</li> 
-                        <li>Description: ${movie.plot}</li> 
-                        <li>Genre: ${movie.genre}</li>
-                        <li>Year: ${movie.year}</li>
-                        <li>Director: ${movie.director}</li>
-                        <li>Actors/Actresses: ${movie.actors}</li>
                         <li>ID: ${movie.id}</li>
                     </ul>
                 </div>
                 <div class="card-footer">
-                    <button>Delete</button>
+                    <button id="del-btn-${movie.id}">Delete</button>
                     <button class="edit-btn">Edit</button>
                 </div>
             </div>
@@ -47,38 +42,78 @@ function simpleCard(movie){
 function addJSButtons(){
         return `
         <script>
+            // EDIT BTN
             $('.edit-btn').click( () => {
                 $('#edit-modal').css('display', 'inline');
             })
             
+            // MODAL CLOSE BTN
             $('.close-btn').click( () => {
                 $('#edit-modal').css('display', 'none');
                 console.log('click')
             }) 
-            
+           
+
         </script>
     `
 }
 
 
 
-// FORM
-const movie = {
-    title:  "Bambi",
-    rating: "3"
+// ADD
+let titleInput = document.getElementById('title-input');
+let ratingInput = document.getElementById('rating-input');
+
+let movie = function (){
+    return {
+        title: titleInput.value,
+        rating: ratingInput.value
+    }
 }
+
 const options = {
     method: "POST",
     headers: {
         'Content-Type': 'application/json',
     },
-    body: JSON.stringify(movie),
+    body: JSON.stringify(movie)
 };
+
 const fetchMovies = () => {
+
         fetch(glitchMovies, options)
         .then((response) => console.log(response))
         .catch((reject) => console.log(reject));
 };
+
+// DELETE
+
+const delOption = {
+    method: "DELETE",
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(movie)
+}
+
+const deleteMovie = (num) => {
+    fetch((glitchMovies + '/' + num + ''), delOption)
+        .then((response) => console.log(response))
+        .catch((reject) => console.log(reject));
+};
+
+
+
+// EVENT LISTENERS
+// const delMoviesBTN = document.getElementById('sanity');
+// delMoviesBTN.addEventListener('click', deleteMovie);
+// DELETE BTN
+
+
+const addMoviesBTN = document.getElementById('add-movies-btn');
+addMoviesBTN.addEventListener('click', fetchMovies);
+
+
 /**
  * ACTIVATE
  */
