@@ -119,7 +119,7 @@ addMoviesBTN.addEventListener('click', fetchMovies);
  */
 getMovies().then( (movieList) => {
     let output = ''
-    for (let i = 0; i < movieList.length; i++) {
+     for (let i = 0; i < movieList.length; i++) {
         output += simpleCard(movieList[i]);
     }
     $('#movie-container').html(output);
