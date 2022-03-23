@@ -3,9 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Title</title>
-	<!--	MOBILE-VIEW-->
+	<!--FAVICON-->
+	<link rel="shortcut icon" href="img/MoonConceptSmallPatch03.svg" type="image/x-icon">
+	<!--MOBILE-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--	BOOTSTRAP5-->
+	<!--BOOTSTRAP-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
@@ -19,78 +21,16 @@
 
 
 
-<!--JAVASCRIPT-->
-<script>
-	"use strict";
-	//THIS TAKES THE DIV WITH THE ID TO PUT THE INFORMATION IN IT.
-	let output_information = document.getElementById('output-information');
-	//THIS IS THE URL THE INFORMATION IS COMING FROM.
-	const movies_url = 'https://marked-meadow-provelone.glitch.me/movies';
-	
-	//THIS IS SO I COULD USE TEMPLATE LITERALS, BUT NOT SURE IF IT MAKES ANY DIFFERENCE.
-	const willBootStrapWorkStart = `<div class="card my-3 m-auto" style="max-width: 500px;">`
-	const cardDiv2 = `<div class="row g-0">`
-	const cardDiv3 = `<div class="col-4">`
-	const cardDiv4 = `<div class="col-8">`
-	const cardDiv5 = `<div class="card-body">`
-	const bootStrapCardTitle = `<h5 class="card-title">`
-	const theDetailsTag = `<details>`
-	const detailsEnd = `</details>`
-	const h5End = `</h5>`
-	const divEnd = `</div>`
-	const brTags = `<br>`
-	
-	
-	fetch(movies_url).then( (response) => {
-		response.json().then( (movies) => {
-			
-			movies.forEach( (movie , index, idk)  => {
-				const movie_title    = movie.title   ;
-				const movie_rating   = movie.rating  ;
-				const movie_image    = movie.poster  ;
-				const movie_year     = movie.year    ;
-				const movie_genre    = movie.genre   ;
-				const movie_director = movie.director;
-				const movie_plot     = movie.plot    ;
-				const movie_actors   = movie.actors  ;
-				//I WAS RUNNING INTO ISSUES WITH THE IMAGE SHOWING UP, SO I HAD TO PUT THE TAGS HERE.
-				const theImage = `<img src="${movie_image}" class="w-100" alt="${movie_plot}">`
-				// console.log( `${movie_title}` === "undefined"); // TRYING TO GET RID OF UNDEFINED.
-				// console.log(  Object.keys(movie) ); // TESTING .LENGTH, TO GET RID OF UNDEFINED.
-				//Object.keys(movie).length > 2 // TESTING IF STATEMENTS
-				//OBJECT LITERALS
-				if (`${movie_title}` !== "undefined") { //DECIDED TO GO WITH THIS IF STATEMENT
-					output_information.innerHTML += `
-					${willBootStrapWorkStart}
-					${cardDiv2}
-					${cardDiv3}
-								 ${theImage}
-					${divEnd}
-					${cardDiv4}
-					${cardDiv5}
-					${bootStrapCardTitle}Title:      ${movie_title} ${h5End}
-							Rating:		${movie_rating}
-					${theDetailsTag}
-							Year:	 	${movie_year}     ${brTags}
-							Genre:	 	${movie_genre}    ${brTags}
-							Director:	${movie_director} ${brTags}
-							Plot:	 	${movie_plot}     ${brTags}
-							Actors:	 	${movie_actors}   ${brTags}
-					${detailsEnd}
-					${divEnd}
-					${divEnd}
-					${divEnd}
-					${divEnd}
-					`
-				}
-			});
-		});
-	});
-	
-	// output_information.innerHTML += movies_url;
+<!--SCRIPT-->
+<section>
+	<!--jQuery-->
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<!--bootstrap-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<!--OUR JS-->
+	<script src="index.js"></script>
 
-
-</script>
+</section>
 
 </body>
 </html>
