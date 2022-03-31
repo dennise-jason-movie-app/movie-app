@@ -22,6 +22,9 @@ const h5End = `</h5>`
 const divEnd = `</div>`
 const brTags = `<br>`
 
+/**
+ *  FUNCTIONS
+ */
 function callCards(movies){
     movies.forEach( (movie , index, a)  => {
         const movie_title    = movie.title   ;
@@ -65,13 +68,69 @@ function callCards(movies){
     });
 }
 
+function makeMovieObj(){
+    return {
+        title: $('#title-input').val(),
+        director: $('#director-input').val(),
+        year: $('#year-input').val(),
+        genre: $('#genre-input').val(),
+        actors: $('#actors-input').val(),
+        plot: $('#plot-input').val(),
+        rating: $('#rating-input').val(),
+        poster: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.alamy.com%2Fstock-photo%2Fbatman-film-poster.html&psig=AOvVaw0zcqgCCGmMI49kZc59UpXi&ust=1648158389307000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNDen8-a3fYCFQAAAAAdAAAAABAD'
+    }
+}
 
-fetch(movies_url).then( (response) => {
-    response.json()
-        .then( (movies) => {                                   //   <--FETCH
-            callCards(movies);
+
+
+
+/**
+ * ACTIONS
+ */
+function addMovieAction(movie){
+    const addOption = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(movie),
+    };
+    fetch(movies_url, addOption)
+        .then(() =>console.log('Added Movie'))
+        .catch((error) => console.log('Failed to Add Movie: ', error))
+        .then(function(){
+            postingCardsAction();
+        })
+
+}
+function postingCardsAction(){
+    fetch(movies_url).then( (response) => {
+        response.json()
+            .then( (movies) => {                                   //   <--FETCH
+                callCards(movies);
+            })
     });
-});
+}
+
+
+/**
+ * EVENT LISTENERS
+ */
+$('#add-movies-btn').click((e) => {
+    e.preventDefault();
+    const movie = makeMovieObj();
+    // console.log(movie);
+    addMovieAction(movie);
+})
+
+
+
+/**
+ * INITIATE
+ */
+postingCardsAction();
+
+
 
 // output_information.innerHTML += movies_url;
 
